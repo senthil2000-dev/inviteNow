@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function(){ 
 var xhttp = new XMLHttpRequest();
 xhttp.open("POST", "ajax/searchSuggestions.php", true);
 xhttp.send();
@@ -17,7 +18,7 @@ xmlh.onreadystatechange = function() {
     autocomplete(document.getElementsByClassName("searchInput")[1], JSON.parse(this.responseText));
     }
 };
-}
+}});
 function autocomplete(inp, arr) {
     var currentFocus;
     inp.addEventListener("input", function(e) {
