@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once('google-calendar-api.php');
+require_once('Google-calendar-api.php');
 require_once('settings.php');
 
 // Google passes a parameter 'code' in the Redirect Url
