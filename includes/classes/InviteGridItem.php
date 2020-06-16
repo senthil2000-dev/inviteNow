@@ -18,9 +18,11 @@ class InviteGridItem{
         $title=$this->invite->getTitle();
         $description=$this->invite->getDescription();
         $added=$this->invite->isAdded();
+        $text="Remove";
         $calendarText=($added==1)?"ADDED TO GOOGLE CALENDAR":"ADD TO GOOGLE CALENDAR";
         $editOption=(basename($_SERVER["PHP_SELF"])=="editInvites.php")? "<span class='editing $add'>Edit</span>": "";
         if(basename($_SERVER["PHP_SELF"])=="editInvites.php") {
+            $text="Cancel";
             $attendance=$this->invite->getAttendance()?$this->invite->getAttendance():0;
             $veg=$this->invite->getVeg();
             $south=$this->invite->getSouth();
@@ -38,7 +40,7 @@ class InviteGridItem{
                             <li></li>
                         </ul>
                         <div class='dropdown-content myDropdown' id='$id'>
-                            <span class='removing $id'>Remove</span>
+                            <span class='removing $id'>$text</span>
                             $editOption
                         </div>
                     </div>";
