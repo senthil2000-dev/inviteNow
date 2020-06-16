@@ -17,6 +17,9 @@ $userLoggedInObj = new User($con, $usernameLoggedIn);
 <html>
 <head>
 <title>InviteNow</title>
+<link rel = "icon" href =  
+"assets\images\icons\mailPic.png" 
+        type = "image/x-icon"> 
 <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 <script src="assets/js/commonActions.js"></script>
