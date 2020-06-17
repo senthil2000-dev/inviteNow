@@ -17,21 +17,24 @@ class InviteGridItem{
         $dateOfEvent=$this->invite->getDate();
         $title=$this->invite->getTitle();
         $description=$this->invite->getDescription();
-        $added=$this->invite->isAdded();
         $text="Remove";
-        $calendarText=($added==1)?"ADDED TO GOOGLE CALENDAR":"ADD TO GOOGLE CALENDAR";
-        $editOption=(basename($_SERVER["PHP_SELF"])=="editInvites.php")? "<span class='editing $add'>Edit</span>": "";
+        $info="";
+        $calendarOption="";
+        $editOption="";
         if(basename($_SERVER["PHP_SELF"])=="editInvites.php") {
+            $editOption="<span class='editing $add'>Edit</span>";
             $text="Cancel";
             $attendance=$this->invite->getAttendance()?$this->invite->getAttendance():0;
             $veg=$this->invite->getVeg();
             $south=$this->invite->getSouth();
             $info="<button onclick='attendance()' class='btn btn-primary'>$attendance attendees<br>$veg<br>$south</button>";
         }
-        else {
-            $info="";
+        else if(basename($_SERVER["PHP_SELF"])=="accepted.php") {
+            $added=$this->invite->isAdded();
+            $calendarText=($added==1)?"ADDED TO GOOGLE CALENDAR":"ADD TO GOOGLE CALENDAR";
+            $calendarOption=(basename($_SERVER["PHP_SELF"])=="accepted.php")? "<button onclick='submitDate(this, \"$id\", \"$dateOfEvent\", \"$title\", \"$description\")' style='margin: auto 5px auto auto;' class='btn btn-primary $id'>$calendarText</button>": "";
         }
-        $calendarOption=(basename($_SERVER["PHP_SELF"])=="accepted.php")? "<button onclick='submitDate(this, \"$id\", \"$dateOfEvent\", \"$title\", \"$description\")' style='margin: auto 5px auto auto;' class='btn btn-primary $id'>$calendarText</button>": "";
+        
         if(basename($_SERVER["PHP_SELF"])=="received.php"||basename($_SERVER["PHP_SELF"])=="editInvites.php") {
             $delete="<div class='dropdown'>
                         <ul class='dropbtn icons btn-right showLeft $id'>
